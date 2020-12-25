@@ -1,4 +1,5 @@
 import fetch from 'dva/fetch';
+import ip from './ip';
 
 function parseJSON(response) {
   return response.json();
@@ -14,6 +15,9 @@ function checkStatus(response) {
   throw error;
 }
 
+
+
+
 /**
  * Requests a URL, returning a promise.
  *
@@ -21,10 +25,26 @@ function checkStatus(response) {
  * @param  {object} [options] The options we want to pass to "fetch"
  * @return {object}           An object containing either "data" or "err"
  */
-export default function request(url, options) {
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(data => ({ data }))
-    .catch(err => ({ err }));
+// function request(url, options) {
+//   return fetch(url, options)
+//     .then(checkStatus)
+//     .then(parseJSON)
+//     .then(data => ({ data }))
+//     .catch(err => ({ err }));
+// }
+
+
+export default function requestPost(url,data) {
+  console.log(ip.ip+url);
+   return fetch(ip.ip+url,{
+     method:'POST',
+     headers:{
+      "Content-Type":"application/json;charset=UTF-8"
+     },
+     body:JSON.stringify(data)
+   })
+   .then(checkStatus)
+   .then(parseJSON)
+   .then(data => ({ data }))
+   .catch(err => ({ err }));
 }
