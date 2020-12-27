@@ -5,3 +5,7 @@
    const app = dva({
   history: createHistory(),
   });
+
+3.cnpm install dva-loading --save
+
+4.npm install --save js-md5
