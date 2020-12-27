@@ -12,7 +12,8 @@ class LoginPage extends React.Component {
         super(props);
         this.state = {
             username: '',
-            password: ''
+            password: '',
+            errorText:'',
         };
     }
 
@@ -29,10 +30,14 @@ class LoginPage extends React.Component {
         }).then(resp => {
             console.log(resp.data);
             const { result = '' } = resp.data[0];
+            
             if (result === 'SUCCESS') {
                 alert('登录成功');
             } else {
-                alert('登录失败');
+                const errorText = resp.data[0].data[0];
+                this.setState({
+                    errorText:errorText,
+                });
             }
         });
     }
@@ -40,7 +45,7 @@ class LoginPage extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <LoginView login={this.login} />
+                <LoginView login={this.login} errorText={this.state.errorText} />
             </React.Fragment>
         )
     }
