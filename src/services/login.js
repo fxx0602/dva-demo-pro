@@ -1,5 +1,14 @@
 import requestPost from '../utils/request';
+import base from './base';
 
 export function login(data) {
-    return requestPost('/HISOMEAPI/userMgnt/loginMgnt',data);
-  }
+    return requestPost(base.login,data);
+}
+
+export function version(data) {
+  return requestPost(base.version,data);
+}
+
+export function modifyPassword(data) {
+  return requestPost(base.modifyPassword,data);
+}

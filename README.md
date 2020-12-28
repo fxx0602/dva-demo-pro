@@ -9,3 +9,6 @@
 3.cnpm install dva-loading --save
 
 4.npm install --save js-md5
+
+5.原因是ie不支持es6语法，需要导入依赖包
+   npm install --save-dev babel-polyfill 在main.js中引入： import “babel-polyfill”

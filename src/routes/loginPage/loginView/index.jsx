@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style.css';
-import { Form, Icon, Input, Button, Alert } from 'antd';
+import { Form, Icon, Input, Button, Alert, } from 'antd';
 import ModifyPassWd from '../../../components/modifyPassWd';
 
 import logo from '../../../assets/img/login_logo.png';
@@ -20,6 +20,11 @@ class LoginView extends React.Component {
             this.setState({
                 isError: true,
             });
+        }
+        if (nextProps.actived !== this.props.actived) {
+          this.setState({
+            visible:parseInt(nextProps.actived,0) === 0,
+          });
         }
     }
 
@@ -60,6 +65,8 @@ class LoginView extends React.Component {
           console.log('Received values of form: ', values);
           form.resetFields();
           this.setState({ visible: false });
+          const formValues = this.props.form.getFieldsValue();
+          this.props.modifyPassword(formValues.username,formValues.password,values.password);
         });
       }
     

@@ -8,7 +8,6 @@ class ModifyPassWd extends React.Component {
             labelCol: { span: 4 },
             wrapperCol: { span: 18 },
           }
-        console.log("visible"+visible)
         const { getFieldDecorator } = form;
         return (
           <Modal
