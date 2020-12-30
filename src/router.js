@@ -2,61 +2,33 @@ import React from 'react';
 import dynamic from 'dva/dynamic'
 import { Router, Route, Switch,routerRedux } from 'dva/router';
 //import LoginPage from './routes/loginPage';
-//import Topics from './routes/topics';
-//import PageTop from './routes/pageTop';
+// import Topics from './routes/topics';
+// import PageTop from './routes/pageTop';
+// import VideoWall from './routes/pageTop/videoWall';
+// import ParamsConfig from './routes/pageTop/paramsConfig';
 
 
-const { ConnectedRouter } = routerRedux;
-function RouterConfig({ history,app }) {
-  const routes = [{
-     path:'/',
-     name:'Login',
-     models:() => [import('./models/login')],
-     component: () => import('./routes/loginPage')
-  },{
-    path:'/pageTop',
-    name:'PageTop',
-    component:() => import('./routes/pageTop')
-  },{
-    path:'/pageTop/wall',
-    name:'wall',
-    component:() => import('./routes/pageTop/videoWall')
-  },{
-    path:'/pageTop/seq',
-    name:'seq',
-    component:() => import('./routes/pageTop/sequenceConfig')
-  },{
-    path:'/pageTop/params',
-    name:'params',
-    component:() => import('./routes/pageTop/paramsConfig')
-  },{
-    path:'/pageTop/log',
-    name:'systemlog',
-    component:() => import('./routes/pageTop/systemLog')
-  }]
-
-
-
+function RouterConfig({ history, app }) {
+    console.log(app);
+    const LoginPage = dynamic({
+        app,
+        component: () => import('./routes/loginPage')
+    })
+    const PageTop = dynamic({
+        app,
+        component: () => import('./routes/pageTop')
+    });
+    console.log(PageTop);
   return (
-    <ConnectedRouter history={history}>
-      <Switch>
-       {
-         routes.map(({path,name,...dynamics}) => {
-           if (path === '/') {
-            return (
-              <Route path={path} key={name} exact component={dynamic({app, ...dynamics})} />
-            );
-           } else {
-            return (
-              <Route path={path} key={name} component={dynamic({app, ...dynamics})} />
-            );
-           }
-           
-         })
-       }
-      </Switch>
-    </ConnectedRouter>
-  );
+      <Router history={history}>
+          <Switch>
+              <Route path="/" exact component={LoginPage} />
+              <Route path="/pageTop" render={() => <PageTop app={app} history={history} />} />
+              {/* <Route path="/pageTop" component={PageTop}/> */}
+          </Switch>
+      </Router>
+  )
 }
+
 
 export default RouterConfig;

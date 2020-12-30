@@ -1,0 +1,60 @@
+.navbar {
+    background-color: #2b3643;
+    width: 100%;
+    margin: 0;
+    border: 0px;
+    padding: 0px;
+    box-shadow: none;
+    height: 46px;
+    min-height: 46px;
+    -webkit-filter: none;
+    filter: none;
+    background-image: none;
+	/* Top notification menu/bar */
+	/* Header seaech box */
+	/* Toggler button for sidebar expand/collapse and responsive sidebar menu */
+}
+
+.navbar .pageLogo {
+    float: left;
+    display: block;
+    width: 235px;
+    height: 46px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+.navbar .pageLogo > a {
+    display: inline-block;
+    float: left;
+}
+
+.navbar .topMenu {
+    margin: 0;
+    padding: 0;
+    float: right;
+}
+
+.navbar .topMenu .navbarNav {
+    padding: 0;
+    margin-right: 20px;
+    display: block;
+    float: right;
+}
+
+.navbar .topMenu .navbarNav li {
+    display: inline;
+   list-style-type: none;
+   padding: 0 10px;
+}
+
+.navbarCollapse {
+    background-color:#333e4c;
+    height:50px;
+    padding-top: 10px;
+}
+
+.navbarCollapse .horMenu a{
+    text-decoration: none;
+    padding-left: 10px;
+    padding-right: 10px;
+}
