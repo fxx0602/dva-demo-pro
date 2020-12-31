@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style.css';
-import { Form, Icon, Input, Button, Alert, } from 'antd';
+import { Form, Icon, Input, Button, Alert,message } from 'antd';
 import ModifyPassWd from '../../../components/modifyPassWd';
 
 import logo from '../../../assets/img/login_logo.png';
@@ -59,10 +59,9 @@ class LoginView extends React.Component {
           }
           const { confirmPw,password} = values;
           if (confirmPw !== password) {
-              alert('两次密码不一样');
+              message.warn('两次密码不一样')
               return;
           }
-          console.log('Received values of form: ', values);
           form.resetFields();
           this.setState({ visible: false });
           const formValues = this.props.form.getFieldsValue();
@@ -126,7 +125,6 @@ class LoginView extends React.Component {
                                 <Button type="primary" htmlType="submit" className="login-form-button" style={{ width: '100%', backgroundColor: '#44b6ae', height: '40px' }}>
                                     登录
                             </Button>
-                                <Button onClick={this.showModal}>修改密码</Button>
                             </Form.Item>
                             <div className={style.create_account}>
                                 <p>

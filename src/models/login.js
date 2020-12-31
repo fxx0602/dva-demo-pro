@@ -63,7 +63,6 @@ export default {
         yield put({ type: 'save' });
       },
       *getVersion({payload},{call,put}) {
-        console.log(payload);
         const result = yield call(api.version,payload);
         const data = result.data[0].data[0];
        if (data) {

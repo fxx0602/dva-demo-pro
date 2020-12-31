@@ -47,7 +47,7 @@
    padding: 0 10px;
 }
 
-.navbarCollapse {
+/* .navbarCollapse {
     background-color:#333e4c;
     height:50px;
     padding-top: 10px;
@@ -57,4 +57,45 @@
     text-decoration: none;
     padding-left: 10px;
     padding-right: 10px;
+} */
+
+.collapse{
+    display: block;
 }
+
+.navbarCollapse{
+    display: block;
+    background-color: #333e4c;
+    height:50px;
+}
+
+.containerFluid {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 600px;
+    text-align: center;
+    height: 100%;
+}
+
+.nav{
+    padding-left: 0;
+    list-style: none;
+    display: inline-flex;
+    height: 50px;
+    margin-top: 0px;
+}
+
+.nav li {
+    padding-top: 15px;
+    color: #b4bcc8;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.isActive {
+    background-color: #55616f;
+    color:#ffffff !important;
+}
+
