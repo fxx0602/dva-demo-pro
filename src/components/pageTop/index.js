@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'dva';
-import style from './style.css'
+import style from './style.css';
+import { message } from 'antd';
+import * as loginApi from '../../services/login';
 
 
 import logopath from '../../assets/img/m.png';
@@ -9,30 +11,30 @@ class PageTop extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      topMenu:[{
-        path:'/wall',
-        name:'电视墙',
-        isActive:false,
-      },{
-        path:'/seq',
-        name:'序列配置',
-        isActive:false,
-      },{
-        path:'/params',
-        name:'参数设置',
-        isActive:false,
-      },{
-        path:'/log',
-        name:'系统日志',
-        isActive:false,
+      topMenu: [{
+        path: '/wall',
+        name: '电视墙',
+        isActive: false,
+      }, {
+        path: '/seq',
+        name: '序列配置',
+        isActive: false,
+      }, {
+        path: '/params',
+        name: '参数设置',
+        isActive: false,
+      }, {
+        path: '/log',
+        name: '系统日志',
+        isActive: false,
       }],
     }
   }
 
   componentDidMount() {
-     const currrent =  this.props.current;
-     const topMenu = this.state.topMenu;
-     topMenu.forEach(function(value) {
+    const currrent = this.props.current;
+    const topMenu = this.state.topMenu;
+    topMenu.forEach(function (value) {
       if (value.name === currrent) {
         value.isActive = true;
       } else {
@@ -40,27 +42,52 @@ class PageTop extends React.Component {
       }
     });
     this.setState({
-      topMenu:topMenu
+      topMenu: topMenu
     });
   }
 
 
-  changeTopMenu(name){
-     const topMenu = this.state.topMenu;
-     let nextPath ='';
-     topMenu.forEach(function(value) {
-       if (value.name === name) {
-         value.isActive = true;
-         nextPath = value.path;
-       } else {
-         value.isActive = false;
-       }
-     });
-     this.setState({
-       topMenu:topMenu
-     });
-     this.props.history.push(nextPath);
-  } 
+  changeTopMenu(name) {
+    const topMenu = this.state.topMenu;
+    let nextPath = '';
+    topMenu.forEach(function (value) {
+      if (value.name === name) {
+        value.isActive = true;
+        nextPath = value.path;
+      } else {
+        value.isActive = false;
+      }
+    });
+    this.setState({
+      topMenu: topMenu
+    });
+    this.props.history.push(nextPath);
+  }
+
+  quitLogin = () => {
+    loginApi.login({
+      reqType: "DELETE",
+      userID: this.props.user.userID.toString(),
+    }).then(resp => {
+      const reqData = resp.data[0];
+      const { result = '' } = reqData;
+      if (result === 'SUCCESS') {
+
+        this.props.dispatch({
+          type: 'login/updateAuthority',
+          payload: {
+            userID: '',
+            userName: ''
+          },
+        });
+        this.props.history.push('/');
+
+      } else {
+        const errorText = resp.data[0].data[0].reason;
+        message.error(errorText);
+      }
+    });
+  }
 
   render() {
     const { userName } = this.props.user;
@@ -84,29 +111,29 @@ class PageTop extends React.Component {
               </li>
               <li id="header_inbox_bar">
                 <a>
-                  <label style={{ fontFamily: '微软雅黑', color: '#D6E9C6' }}>退出</label>
+                  <label style={{ fontFamily: '微软雅黑', color: '#D6E9C6' }} onClick={this.quitLogin}>退出</label>
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-    
-          <div className={style.navbarCollapse}>
-            <div className={style.containerFluid}>
-              
-                <ul className={style.nav}>
-                  {
-                     topMenu.map((ele,index) => {
-                       return(
-                         <li key={index} className={ele.isActive ? style.isActive : ''} onClick={this.changeTopMenu.bind(this,ele.name)}>{ele.name}</li>
-                       )
-                     })
-                  }
-                </ul>
-              
-            </div>
+
+        <div className={style.navbarCollapse}>
+          <div className={style.containerFluid}>
+
+            <ul className={style.nav}>
+              {
+                topMenu.map((ele, index) => {
+                  return (
+                    <li key={index} className={ele.isActive ? style.isActive : ''} onClick={this.changeTopMenu.bind(this, ele.name)}>{ele.name}</li>
+                  )
+                })
+              }
+            </ul>
+
           </div>
+        </div>
       </React.Fragment >
     );
   }
@@ -115,6 +142,6 @@ class PageTop extends React.Component {
 
 
 export default connect((state) => ({
-   user:state.login,
-   loading:state.loading,
+  user: state.login,
+  loading: state.loading,
 }))(PageTop);
