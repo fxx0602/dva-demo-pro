@@ -6,10 +6,10 @@ import createLoading from 'dva-loading';
 import './index.css';
 
 // 1. Initialize
-//const app = dva();
-const app = dva({
-  history: createHistory(),
-});
+const app = dva();
+// const app = dva({
+//   history: createHistory(),
+// });
 
 // 2. Plugins
 app.use(createLoading());
