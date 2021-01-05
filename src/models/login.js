@@ -71,8 +71,32 @@ export default {
           payload:data,
          });
        }
+      },
+      *getInfoFromLocalStorage({payload}, {call,put,select}) {
+        const user = yield select(state => state.login);
+        console.log(user);
+        if (user.userID === undefined || user.userID === null || user.userID === '') {
+          yield put({
+            type:'updateAuthority',
+            payload:{
+             userID:localStorage.getItem("userID"),
+             userName:localStorage.getItem("userName"),
+            }
+          })
+        }
       }
     },
+    subscriptions: {
+      setup({ dispatch, history }) {  // eslint-disable-line
+        
+         history.listen((location) => {
+           dispatch({
+             type:'getInfoFromLocalStorage'
+           });
+         })
+      },
+    },
+  
   }
 
   function deepClone(arr) {

@@ -45,10 +45,15 @@ class LoginPage extends React.Component {
                 this.setState({
                     actived:actived,
                 });
+                const { userID } = data[0];
+                data[0].userID = userID.toString();
+                localStorage.setItem("userID",data[0].userID);
+                localStorage.setItem("userName",data[0].userName);
                 this.props.dispatch({
                     type:'login/updateAuthority',
                     payload:data[0],
                 });
+               
                 if (parseInt(actived,0) !== 0) {
                   this.props.history.push('/wall');
                 }

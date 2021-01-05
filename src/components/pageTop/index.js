@@ -67,7 +67,7 @@ class PageTop extends React.Component {
   quitLogin = () => {
     loginApi.login({
       reqType: "DELETE",
-      userID: this.props.user.userID.toString(),
+      userID: this.props.user.userID,
     }).then(resp => {
       const reqData = resp.data[0];
       const { result = '' } = reqData;
@@ -92,7 +92,6 @@ class PageTop extends React.Component {
   render() {
     const { userName } = this.props.user;
     const { topMenu } = this.state;
-    console.log(logopath);
     return (
       <React.Fragment>
         <div className={style.navbar} id="contentTitle">

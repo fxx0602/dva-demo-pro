@@ -19,10 +19,6 @@ export default class LeftSlider extends React.Component {
         }
     }
 
-    componentDidMount() {
-        console.log('挂窄');
-        console.log(this.props.menuData);
-    }
 
 
     componentWillReceiveProps(nextProps) {
@@ -70,7 +66,7 @@ export default class LeftSlider extends React.Component {
             return currentValue.pkey === key;
         });
 
-        console.log(one);
+    
         this.setState({
             selectedKeys:one.children[0].key,
         });
@@ -86,8 +82,6 @@ export default class LeftSlider extends React.Component {
 
 
     render() {
-        console.log(this.state.openKeys);
-        console.log(this.state.rootSubmenuKeys);
         return (
             <Sider trigger={null} collapsible collapsed={this.state.collapsed} style={{ backgroundColor: '#333e4c' }}>
                 <div className="logo" />
