@@ -22,22 +22,62 @@ export default class LeftSlider extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
+        const { location } = this.props.history;
+        const { pathname } = location;
+        console.log(pathname);
+    
         const { menuData } = nextProps;
+        
         if (JSON.stringify(menuData) !== JSON.stringify(this.props.menuData)) {
             if (menuData.length > 0) {
+
+                const isFirst = menuData.some(function(currentValue,index,arr){
+                   return currentValue.children.some(function(current,index,arr) {
+                      return current.path === pathname;
+                   })
+                });
+               
+                let pkey = null, exist = null;
+               for(let i=0;i<menuData.length;i++) {
+                   let flag = false;
+                   for(let j=0;j<menuData[i].children.length;j++) {
+                       if (menuData[i].children[j].path === pathname) {
+                           pkey = menuData[i].pkey;
+                           exist = menuData[i].children[j];
+                           flag = true;
+                           break;
+                       }
+                   }
+                   if (flag) {
+                       break;
+                   }
+               }
+            
+               
                 const rootSubmenuKeys = [];
                 for (let i = 0; i < menuData.length; i++) {
                     rootSubmenuKeys.push(menuData[i].pkey);
                 }
                 this.setState({
-                    openKeys: [menuData[0].pkey],
-                    selectedKeys: [menuData[0].children[0].key],
+                    openKeys: isFirst ? [pkey] : [menuData[0].pkey],
+                    selectedKeys: isFirst ? [exist.key] : [menuData[0].children[0].key],
                     rootSubmenuKeys: rootSubmenuKeys,
                 });
-                this.props.history.push(menuData[0].children[0].path);
+                if (isFirst) {
+                    this.props.history.push(exist.path);
+                } else {
+                    this.props.history.push(menuData[0].children[0].path);
+                }
+               
             }
         }
     
+    }
+
+    isFirst(pathname,menu){
+     
+     
+
     }
 
     

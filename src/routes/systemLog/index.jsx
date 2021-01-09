@@ -25,15 +25,15 @@ export default class SystemLog extends React.Component {
             children:[{
                 key:'version',
                 name:'版本信息',
-                path:'/log/version'
+                path:'/sys/version'
             },{
                 key:'log',
                 name:'日志信息',
-                path:'/log/log'
+                path:'/sys/log'
             },{
                key:'online',
                name:'在线用户',
-               path:'/log/online'
+               path:'/sys/online'
             }]
         }];
         this.setState({
@@ -55,9 +55,9 @@ export default class SystemLog extends React.Component {
                                 minHeight: 280,
                             }}
                         >
-                            <Route path="/log/version" component={Version} />
-                            <Route path="/log/log" component={Log} />
-                            <Route path="/log/online" component={OnlineUser} />
+                            <Route path="/sys/version" component={Version} />
+                            <Route path="/sys/log" component={Log} />
+                            <Route path="/sys/online" component={OnlineUser} />
                         </Content>
                     </Layout>
                 </Layout>

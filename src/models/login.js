@@ -74,7 +74,6 @@ export default {
       },
       *getInfoFromLocalStorage({payload}, {call,put,select}) {
         const user = yield select(state => state.login);
-        console.log(user);
         if (user.userID === undefined || user.userID === null || user.userID === '') {
           yield put({
             type:'updateAuthority',

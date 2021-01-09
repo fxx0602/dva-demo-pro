@@ -29,7 +29,7 @@ function RouterConfig({ history, app }) {
               <Route path="/wall" component={VideoWall} />
              <Route path="/params" component={ParamsConfig} />
              <Route path="/seq" component={SequenceConfig} />
-              <Route path="/log" component={SystemLog} />
+              <Route path="/sys" component={SystemLog} />
           </Switch>
       </Router>
   )

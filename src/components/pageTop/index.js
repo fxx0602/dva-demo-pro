@@ -24,7 +24,7 @@ class PageTop extends React.Component {
         name: '参数设置',
         isActive: false,
       }, {
-        path: '/log',
+        path: '/sys',
         name: '系统日志',
         isActive: false,
       }],
