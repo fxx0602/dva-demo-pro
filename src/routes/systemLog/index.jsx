@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'dva';
 import PageTop from '../../components/pageTop';
 import LeftSlider from '../../components/LeftSlider';
 import Log from './log';
@@ -9,7 +10,7 @@ import { Route} from 'dva/router';
 
 const { Content } = Layout;
 
-export default class SystemLog extends React.Component {
+class SystemLog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -56,7 +57,7 @@ export default class SystemLog extends React.Component {
                             }}
                         >
                             <Route path="/sys/version" component={Version} />
-                            <Route path="/sys/log" component={Log} />
+                            <Route path="/sys/log" render={() => <Log user={this.props.user} />} />
                             <Route path="/sys/online" component={OnlineUser} />
                         </Content>
                     </Layout>
@@ -66,3 +67,12 @@ export default class SystemLog extends React.Component {
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user:state.login,
+        loading:state.loading,
+    }
+}
+
+export default connect(mapStateToProps)(SystemLog);

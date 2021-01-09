@@ -12,3 +12,8 @@ export function version(data) {
 export function modifyPassword(data) {
   return requestPost(base.modifyPassword,data);
 }
+
+export function queryLog(data) {
+  return requestPost(base.log,data);
+}
+ 

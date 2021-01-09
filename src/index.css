@@ -4,3 +4,10 @@ html, body, :global(#root) {
   font-size: 14px;
 }
 
+:global(.ant-breadcrumb) {
+  margin-top: 15px !important;
+    padding-top: 10px !important;
+    background-color: #f7f7f7;
+    padding-left: 25px !important;
+}
+

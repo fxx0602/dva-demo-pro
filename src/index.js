@@ -4,6 +4,9 @@ import { createBrowserHistory as createHistory} from 'history';
 
 import createLoading from 'dva-loading';
 import './index.css';
+import 'moment/locale/zh-cn';
+import moment from 'moment';
+moment.locale('zh-cn');
 
 // 1. Initialize
 const app = dva();

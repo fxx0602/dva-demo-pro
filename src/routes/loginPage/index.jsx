@@ -87,6 +87,7 @@ class LoginPage extends React.Component {
 
     render() {
         const loading = this.props.loading.effects['login/getVersion'];
+       // const loading = false;
         return (
             <React.Fragment>
                  <Spin spinning={loading} wrapperClassName={style.spinHeight}>
