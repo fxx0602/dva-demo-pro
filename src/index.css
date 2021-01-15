@@ -11,3 +11,7 @@ html, body, :global(#root) {
     padding-left: 25px !important;
 }
 
+:global(.ant-form-item) {
+  margin-bottom: 10px !important;
+}
+
