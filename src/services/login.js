@@ -16,4 +16,8 @@ export function modifyPassword(data) {
 export function queryLog(data) {
   return requestPost(base.log,data);
 }
+
+export function ipOperator(data) {
+  return requestPost(base.ip,data);
+}
  

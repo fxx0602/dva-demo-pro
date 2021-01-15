@@ -8,11 +8,11 @@ import SystemCommon from './system/common';
 import LeftSlider from '../../components/LeftSlider';
 import { Route, } from 'dva/router';
 import style from './style.css';
-
+import { connect } from 'dva';
 const { Content } = Layout;
 
 
-export default class ParamsConfig extends React.Component {
+class ParamsConfig extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -77,7 +77,7 @@ export default class ParamsConfig extends React.Component {
                                 minHeight: 280,
                             }}
                         >
-                            <Route path="/params/IP" component={NetWorkIP} />
+                            <Route path="/params/IP" render={() => <NetWorkIP user={this.props.user}/>} />
                             <Route path="/params/domain" component={NetWorkPort} />
                             <Route path="/params/common" component={SystemCommon} />
                             <Route path="/params/auto" component={SystemAutoMain} />
@@ -90,3 +90,12 @@ export default class ParamsConfig extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user:state.login,
+        loading:state.loading,
+    }
+}
+
+export default connect(mapStateToProps)(ParamsConfig);

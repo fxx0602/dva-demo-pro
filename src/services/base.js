@@ -3,6 +3,7 @@ const base = {
     version:'/HISOMEAPI/sysInfo/sysMgntInfo', //获取版本信息接口
     modifyPassword:'/HISOMEAPI/userMgnt/passwordMgnt', // 修改密码
     log:'/HISOMEAPI/sysInfo/sysOperateInfo',// 日志
+    ip:'/HISOMEAPI/network/tcpip/netCard'
 };
 
 export default base;

@@ -12,3 +12,6 @@
 
 5.原因是ie不支持es6语法，需要导入依赖包
    npm install --save-dev babel-polyfill 在main.js中引入： import “babel-polyfill”
+
+   6。cnpm install file-saver --save
+       cnpm install xlsx --save
