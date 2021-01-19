@@ -77,7 +77,7 @@ class ParamsConfig extends React.Component {
                                 minHeight: 280,
                             }}
                         >
-                            <Route path="/params/IP" render={() => <NetWorkIP user={this.props.user}/>} />
+                            <Route path="/params/IP" render={() => <NetWorkIP user={this.props.user} history={this.props.history} />} />
                             <Route path="/params/domain" component={NetWorkPort} />
                             <Route path="/params/common" component={SystemCommon} />
                             <Route path="/params/auto" component={SystemAutoMain} />

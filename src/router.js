@@ -1,6 +1,6 @@
 import React from 'react';
 import dynamic from 'dva/dynamic'
-import { Router, Route, Switch,} from 'dva/router';
+import { Router, Route, Switch,Redirect} from 'dva/router';
 //import LoginPage from './routes/loginPage';
 // import Topics from './routes/topics';
 // import PageTop from './routes/pageTop';
@@ -23,7 +23,8 @@ function RouterConfig({ history, app }) {
   return (
       <Router history={history}>
           <Switch>
-              <Route path="/" exact component={LoginPage} />
+              <Redirect from="/" exact to='/login' />
+              <Route path="/login" exact component={LoginPage} />
               {/* <Route path="/pageTop" render={() => <PageTop app={app} history={history} />} /> */}
               {/* <Route path="/pageTop" component={PageTop}/> */}
               <Route path="/wall" component={VideoWall} />
